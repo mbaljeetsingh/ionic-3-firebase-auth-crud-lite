@@ -1,8 +1,8 @@
 {
-  "name": "ionic3-firebase-auth-crud",
+  "name": "firebaseCRUD-starter",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "http://ionicframework.com/",
+  "author": "Baljeet Singh",
+  "homepage": "http://baljeetsingh.in/",
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
