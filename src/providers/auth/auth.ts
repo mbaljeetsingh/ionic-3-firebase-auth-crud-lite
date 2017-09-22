@@ -22,7 +22,7 @@ export class AuthProvider {
             (user) => {
                 if (user) {
                     this.userDetails = user;
-                    console.log(this.userDetails);
+                    // console.log(this.userDetails);
                 }
                 else {
                     this.userDetails = null;
@@ -41,8 +41,9 @@ export class AuthProvider {
     }
 
     isLoggedIn() {
-        console.log("Check isLoggedIn:", this.userDetails);
-        return this.userDetails == null ? false : true;
+        // console.log("Check isLoggedIn:", this.userDetails);
+        // return this.userDetails == null ? false : true;
+        return this.user;
     }
     logout() {
         return this.afAuth.auth.signOut();
