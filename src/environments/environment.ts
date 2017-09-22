@@ -1,11 +1,11 @@
 export const environment = {
     production: false,
     firebase: {
-        apiKey: "AIzaSyCxsCFtWL5Ya11FVeWQfMzzu9Wi1fEDBrI",
-        authDomain: "fir-crud-starter.firebaseapp.com",
-        databaseURL: "https://fir-crud-starter.firebaseio.com",
-        projectId: "fir-crud-starter",
-        storageBucket: "fir-crud-starter.appspot.com",
-        messagingSenderId: "633724505046"
+        apiKey: "AIzaSyDxQ9kjzNpZAYd18Se2DkLt526EjlnydJU",
+        authDomain: "fir-crud-1eb79.firebaseapp.com",
+        databaseURL: "https://fir-crud-1eb79.firebaseio.com",
+        projectId: "fir-crud-1eb79",
+        storageBucket: "fir-crud-1eb79.appspot.com",
+        messagingSenderId: "636105722911"
     }
 };

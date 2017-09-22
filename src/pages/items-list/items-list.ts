@@ -18,7 +18,11 @@ import {Item} from '../../models/item/item.interface';
 export class ItemsListPage {
   itemsRef$: FirebaseListObservable<Item[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private database: AngularFireDatabase, private actionSheetCtrl: ActionSheetController) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private database: AngularFireDatabase,
+              private actionSheetCtrl: ActionSheetController
+              ) {
     this.itemsRef$ = this.database.list('items');
   }
 

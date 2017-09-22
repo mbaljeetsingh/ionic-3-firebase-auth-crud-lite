@@ -20,7 +20,10 @@ export class AddItemPage {
 
   itemsRef$ : FirebaseListObservable<Item[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private database: AngularFireDatabase) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private database: AngularFireDatabase
+  ) {
     this.itemsRef$ = this.database.list('items');
   }
 
