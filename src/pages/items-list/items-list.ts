@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {ActionSheetController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 import {Item} from '../../models/item/item.interface';
 
@@ -18,7 +18,7 @@ import {Item} from '../../models/item/item.interface';
 export class ItemsListPage {
   itemsRef$: FirebaseListObservable<Item[]>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private database: AngularFireDatabase) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private database: AngularFireDatabase, private actionSheetCtrl: ActionSheetController) {
     this.itemsRef$ = this.database.list('items');
   }
 
@@ -26,17 +26,42 @@ export class ItemsListPage {
     console.log('ionViewDidLoad ItemsListPage');
   }
 
+    selectItem(item: Item){
+        console.log(item.itemName);
+
+        this.actionSheetCtrl.create({
+            title: `${item.itemName}`,
+            buttons: [
+                {
+                    text: 'Edit',
+                    handler: () => {
+                        console.log('Edit clicked');
+                        this.navCtrl.push('EditItemPage', {
+                            itemId: item.$key
+                        })
+                    }
+                },
+                {
+                    text: 'Delete',
+                    role: 'destructive',
+                    handler: () => {
+                        console.log('Delete clicked');
+                        this.itemsRef$.remove(item.$key);
+                    }
+                },
+                {
+                    text: 'Cancel',
+                    role: 'cancel',
+                    handler: () => {
+                        console.log('Cancel clicked');
+                    }
+                }
+            ]
+        }).present();
+    }
+
     goToAddItemPage() {
     console.log("Working");
         this.navCtrl.push('AddItemPage');
-    }
-
-    editShoppingItem(item: Item){
-      this.navCtrl.push('EditItemPage', {
-        itemId: item.$key
-      })
-    }
-    deleteShoppingItem(item: Item){
-      this.itemsRef$.remove(item.$key);
     }
 }
