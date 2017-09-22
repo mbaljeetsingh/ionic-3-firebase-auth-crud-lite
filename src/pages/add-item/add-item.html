@@ -15,6 +15,22 @@
 
 <ion-content padding>
 
+  <ion-list>
+    <ion-item>
+      <ion-label floating>Item Name</ion-label>
+      <ion-input type="text" [(ngModel)]="item.itemName"></ion-input>
+    </ion-item>
 
+    <ion-item>
+      <ion-label floating>Item Description</ion-label>
+      <ion-input type="text" [(ngModel)]="item.itemDescription"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label floating>Item Number</ion-label>
+      <ion-input type="number" [(ngModel)]="item.itemNumber"></ion-input>
+    </ion-item>
+  </ion-list>
+  <button ion-button block color="primary" (click)="saveItem(item)">Add Item</button>
 
 </ion-content>

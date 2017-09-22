@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import {Item} from '../../models/item/item.interface';
+import {AngularFireDatabase, FirebaseListObservable} from 'angularfire2/database';
 
 /**
  * Generated class for the AddItemPage page.
@@ -14,12 +16,29 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'add-item.html',
 })
 export class AddItemPage {
+  item = {} as Item;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  itemsRef$ : FirebaseListObservable<Item[]>;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private database: AngularFireDatabase) {
+    this.itemsRef$ = this.database.list('items');
   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad AddItemPage');
   }
 
+    saveItem(item: Item) {
+        console.log(item);
+        this.itemsRef$.push({
+            itemName: item.itemName,
+            itemDescription: item.itemDescription,
+            itemNumber: Number(item.itemNumber),
+        });
+
+        this.item = {} as Item;
+
+        this.navCtrl.pop();
+
+    }
 }
