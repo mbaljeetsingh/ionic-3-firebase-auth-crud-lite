@@ -30,11 +30,16 @@ export class AddItemPage {
 
     saveItem(item: Item) {
         console.log(item);
-        this.itemsRef$.push({
+
+
+        const promise =  this.itemsRef$.push({
             itemName: item.itemName,
             itemDescription: item.itemDescription,
             itemNumber: Number(item.itemNumber),
         });
+        promise
+            .then(_ => console.log('Added Item'))
+            .catch(err => console.log(err, 'Error Adding Item'));
 
         this.item = {} as Item;
 

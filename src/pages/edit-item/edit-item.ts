@@ -37,11 +37,14 @@ export class EditItemPage {
   }
 
     EditItem(item: Item) {
-        this.itemRef$.update({
+        const promise =  this.itemRef$.update({
             itemName: item.itemName,
             itemDescription: item.itemDescription,
             itemNumber: Number(item.itemNumber),
         });
+        promise
+            .then(_ => console.log('Updated Item'))
+            .catch(err => console.log(err, 'Error Updating Item'));
         this.navCtrl.pop();
     }
 

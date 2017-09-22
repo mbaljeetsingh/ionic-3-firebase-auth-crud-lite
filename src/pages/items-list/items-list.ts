@@ -46,7 +46,10 @@ export class ItemsListPage {
                     role: 'destructive',
                     handler: () => {
                         console.log('Delete clicked');
-                        this.itemsRef$.remove(item.$key);
+                        const promise =  this.itemsRef$.remove(item.$key);
+                        promise
+                            .then(_ => console.log('Deleted Item'))
+                            .catch(err => console.log(err, 'Error Deleted Item'));
                     }
                 },
                 {
