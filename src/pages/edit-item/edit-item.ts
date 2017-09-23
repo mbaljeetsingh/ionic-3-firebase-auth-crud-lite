@@ -23,7 +23,10 @@ export class EditItemPage {
 
   itemSubscription: Subscription;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private database: AngularFireDatabase) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              private database: AngularFireDatabase
+  ) {
     const itemId = this.navParams.get('itemId');
     this.itemRef$ = this.database.object(`items/${itemId}`);
 
@@ -43,9 +46,11 @@ export class EditItemPage {
             itemNumber: Number(item.itemNumber),
         });
         promise
-            .then(_ => console.log('Updated Item'))
+            .then(_ => {
+                console.log('Updated Item')
+                this.navCtrl.pop();
+            })
             .catch(err => console.log(err, 'Error Updating Item'));
-        this.navCtrl.pop();
     }
 
     ionViewWillLeave(){

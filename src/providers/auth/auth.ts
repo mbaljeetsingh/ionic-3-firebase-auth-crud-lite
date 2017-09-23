@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
 import {AngularFireAuth} from 'angularfire2/auth';
 import {User} from '../../models/user';
+import {Observable} from 'rxjs/Observable';
+import * as firebase from 'firebase/app';
 
 /*
   Generated class for the AuthProvider provider.
@@ -11,10 +13,8 @@ import {User} from '../../models/user';
 */
 @Injectable()
 export class AuthProvider {
-    // private user: Observable<firebase.User>;
-    // private userDetails: firebase.User = null;
-    user;
-    userDetails;
+    private user: Observable<firebase.User>;
+    private userDetails: firebase.User = null;
     constructor(private afAuth: AngularFireAuth) {
         console.log("AuthService is here");
         this.user = afAuth.authState;
@@ -22,7 +22,7 @@ export class AuthProvider {
             (user) => {
                 if (user) {
                     this.userDetails = user;
-                    // console.log(this.userDetails);
+                    console.log("From service constructor subscribe:", this.userDetails);
                 }
                 else {
                     this.userDetails = null;
@@ -40,13 +40,15 @@ export class AuthProvider {
         return this.afAuth.auth.createUserWithEmailAndPassword(user.email,user.password);
     }
 
-    isLoggedIn() {
-        // console.log("Check isLoggedIn:", this.userDetails);
-        // return this.userDetails == null ? false : true;
-        return this.user;
+    // isLoggedIn() {
+    //     return this.user;
+    // }
+
+    getAuthState(){
+        return this.afAuth.authState;
     }
     logout() {
-        return this.afAuth.auth.signOut();
+        this.afAuth.auth.signOut();
     }
 
 }

@@ -41,12 +41,14 @@ export class AddItemPage {
             itemNumber: Number(item.itemNumber),
         });
         promise
-            .then(_ => console.log('Added Item'))
+            .then(_ => {
+                console.log('Added Item');
+                this.item = {} as Item;
+                this.navCtrl.pop();
+            } )
             .catch(err => console.log(err, 'Error Adding Item'));
 
-        this.item = {} as Item;
 
-        this.navCtrl.pop();
 
     }
 }

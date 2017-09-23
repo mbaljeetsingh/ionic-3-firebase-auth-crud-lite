@@ -23,15 +23,11 @@ export class LoginPage {
     } as User;
 
     constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider) {
+
     }
 
     ionViewDidLoad(){
         console.log("Ion View Did Load");
-        this.authProvider.isLoggedIn().subscribe(data => {
-            if (data && data.email && data.uid) {
-                this.navCtrl.setRoot('ItemsListPage');
-            }
-        })
     }
 
     async login(user: User) {
