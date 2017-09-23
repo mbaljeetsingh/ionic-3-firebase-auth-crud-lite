@@ -18,6 +18,8 @@
     <ion-input type="password" [(ngModel)]="user.password"></ion-input>
   </ion-item>
 
-  <button ion-button (click)="login(user)">Login</button>
-  <button ion-button color="light" (click)="register(user)">Register</button>
+  <button ion-button block (click)="login(user)">Login</button>
+  <button ion-button block color="light" (click)="register(user)">Register</button>
+
+  <p ion-text color="danger">{{error}}</p>
 </ion-content>

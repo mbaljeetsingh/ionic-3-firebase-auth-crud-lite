@@ -22,6 +22,8 @@ export class LoginPage {
         password: 'password'
     } as User;
 
+    error;
+
     constructor(public navCtrl: NavController, public navParams: NavParams, private authProvider: AuthProvider) {
 
     }
@@ -39,7 +41,8 @@ export class LoginPage {
             }
         }
         catch (e) {
-            console.error(e);
+            // console.error(e);
+            this.error = e;
         }
     }
 
@@ -51,7 +54,8 @@ export class LoginPage {
                 this.navCtrl.setRoot('ItemsListPage');
             }
         } catch (e) {
-            console.error(e);
+            // console.error(e);
+            this.error = e;
         }
     }
 

@@ -16,7 +16,7 @@ export class AuthProvider {
     private user: Observable<firebase.User>;
     private userDetails: firebase.User = null;
     constructor(private afAuth: AngularFireAuth) {
-        console.log("AuthService is here");
+        console.log("AuthProvider");
         this.user = afAuth.authState;
         this.user.subscribe(
             (user) => {
@@ -40,13 +40,10 @@ export class AuthProvider {
         return this.afAuth.auth.createUserWithEmailAndPassword(user.email,user.password);
     }
 
-    // isLoggedIn() {
-    //     return this.user;
-    // }
-
     getAuthState(){
         return this.afAuth.authState;
     }
+
     logout() {
         this.afAuth.auth.signOut();
     }
